@@ -16,14 +16,12 @@ formButton.addEventListener("click", (e) => {
   // data 받기
   const inputValue = document.querySelector("form>input").value;
 
-  // // 배열 받기
-  // const arr = ["이상해씨","파이리","꼬부기"]
+  // data의 값을 보정(무조건 대문자로 보정)
+  const getMBTI = inputValue.toUpperCase()
 
-  // let index;
+  // mbti 출력 테스트
+  // console.log(getMBTI)
 
-  // for(let i =0;i<arr.length;i++){
-  //     if
-  // }
 
   // fetch 진행
   fetch(`https://pokeapi.co/api/v2/pokemon-species/${inputValue}/`, {
