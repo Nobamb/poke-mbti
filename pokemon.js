@@ -62,13 +62,13 @@ const metagros = new PokemonDatas("메타그로스", 376, "INTP");
 const pikachu = new PokemonDatas("피카츄", 25, "INFJ");
 const zecromu = new PokemonDatas("제크로무", 644, "INFP");
 const daedogakcham = new PokemonDatas("대도각참", 983, "ESTJ");
-const plozel = new PokemonDatas("플로젤", 419, "ESTJ");
-const gaurdian = new PokemonDatas("가디안", 282, "ESTJ");
-const eve = new PokemonDatas("이브이", 133, "ESTJ");
-const arrayer = new PokemonDatas("대여르", 870, "ESTJ");
-const choyunmong = new PokemonDatas("초염몽", 392, "ESTJ");
-const togekiss = new PokemonDatas("토게키스", 468, "ESTJ");
-const bullbidalma = new PokemonDatas("불비달마", 555, "ESTJ");
+const plozel = new PokemonDatas("플로젤", 419, "ESTP");
+const gaurdian = new PokemonDatas("가디안", 282, "ESFJ");
+const eve = new PokemonDatas("이브이", 133, "ESFP");
+const arrayer = new PokemonDatas("대여르", 870, "ENTJ");
+const choyunmong = new PokemonDatas("초염몽", 392, "ENTP");
+const togekiss = new PokemonDatas("토게키스", 468, "ENFJ");
+const bullbidalma = new PokemonDatas("불비달마", 555, "ENFP");
 
 const pokemon = [
   yogaram,
