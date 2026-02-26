@@ -5,7 +5,8 @@ import pokemon from "./pokemon.js";
 
 // fetch 관련 함수들 가져옴
 import fetchImg from "./fetchFunc/fetchImg.js";
-import fetchName from "./fetchFunc/fetchName.js";
+import fetchNameDescription from "./fetchFunc/fetchNameDescription.js";
+
 
 // pokeMBTIdatas 가져옴
 import pokeMBTIdatas from "./data/pokeMBTIdatas.js";
@@ -195,7 +196,7 @@ formButton.addEventListener("click", (e) => {
   let resultApiDatas;
 
   // Promise.all 진행
-  Promise.all([fetchName(pokeUrl), fetchImg(pokeUrl)]).then((data) => {
+  Promise.all([fetchNameDescription(pokeUrl), fetchImg(pokeUrl)]).then((data) => {
     console.log(data);
     // data를 resultApiDatas에 대입
     resultApiDatas = data
