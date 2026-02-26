@@ -43,9 +43,7 @@
 // 클래스
 class PokemonDatas {
   // 생성자 지정
-  constructor(name, id, mbti) {
-    // 이름
-    this.name = name;
+  constructor( id, mbti) {
     // id
     this.id = id;
     // mbti
@@ -53,22 +51,22 @@ class PokemonDatas {
   }
 }
 
-const yogaram = new PokemonDatas("요가램", 308, "ISTJ");
-const resiramu = new PokemonDatas("레시라무", 643, "ISTP");
-const kerdio = new PokemonDatas("케르디오", 647, "ISFJ");
-const happynurse = new PokemonDatas("해피너스", 647, "ISFP");
-const arseus = new PokemonDatas("아르세우스", 493, "INTJ");
-const metagros = new PokemonDatas("메타그로스", 376, "INTP");
-const pikachu = new PokemonDatas("피카츄", 25, "INFJ");
-const zecromu = new PokemonDatas("제크로무", 644, "INFP");
-const daedogakcham = new PokemonDatas("대도각참", 983, "ESTJ");
-const plozel = new PokemonDatas("플로젤", 419, "ESTP");
-const gaurdian = new PokemonDatas("가디안", 282, "ESFJ");
-const eve = new PokemonDatas("이브이", 133, "ESFP");
-const arrayer = new PokemonDatas("대여르", 870, "ENTJ");
-const choyunmong = new PokemonDatas("초염몽", 392, "ENTP");
-const togekiss = new PokemonDatas("토게키스", 468, "ENFJ");
-const bullbidalma = new PokemonDatas("불비달마", 555, "ENFP");
+const yogaram = new PokemonDatas(308, "ISTJ");
+const resiramu = new PokemonDatas(643, "ISTP");
+const kerdio = new PokemonDatas(647, "ISFJ");
+const happynurse = new PokemonDatas(647, "ISFP");
+const arseus = new PokemonDatas(493, "INTJ");
+const metagros = new PokemonDatas(376, "INTP");
+const pikachu = new PokemonDatas(25, "INFJ");
+const zecromu = new PokemonDatas(644, "INFP");
+const daedogakcham = new PokemonDatas(983, "ESTJ");
+const plozel = new PokemonDatas(419, "ESTP");
+const gaurdian = new PokemonDatas(282, "ESFJ");
+const eve = new PokemonDatas(133, "ESFP");
+const arrayer = new PokemonDatas(870, "ENTJ");
+const choyunmong = new PokemonDatas(392, "ENTP");
+const togekiss = new PokemonDatas(468, "ENFJ");
+const bullbidalma = new PokemonDatas(555, "ENFP");
 
 const pokemon = [
   yogaram,
@@ -89,7 +87,6 @@ const pokemon = [
   bullbidalma,
 ];
 
-
 // 테스트
 // pokemon.forEach((poke)=>{
 
@@ -98,4 +95,4 @@ const pokemon = [
 // })
 
 // pokemon export
-export default pokemon
+export default pokemon;
