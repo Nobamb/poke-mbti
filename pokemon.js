@@ -96,3 +96,6 @@ const pokemon = [
 //     console.log(poke.name)
 
 // })
+
+// pokemon export
+export default pokemon
