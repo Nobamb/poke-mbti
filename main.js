@@ -113,71 +113,81 @@ formButton.addEventListener("click", (e) => {
 
   console.log(pokeUrl);
 
-
-
-
-
-
   // fetch 진행(이름 가져오기)
-  fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeUrl}/`, {
-    // GET 요청 받음
-    method: "GET",
-    // application/json 요청
-    headers: { "Content-type": "applicaion/json" },
-  })
-    //   받은 대답을 json => 객체로 변환
-    .then((res) => res.json())
-    // 객체로 변환한 데이터를 받고,
-    .then((data) => {
+  const fetchName = (pokeUrl) =>
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeUrl}/`, {
+      // GET 요청 받음
+      method: "GET",
+      // application/json 요청
+      headers: { "Content-type": "applicaion/json" },
+    })
+      //   받은 대답을 json => 객체로 변환
+      .then((res) => res.json())
+      // 객체로 변환한 데이터를 받고,
+      .then((data) => {
+        // 내보낼 이름
+        // 초기화
+        let resultName;
+        // 전체 데이터 확인
+        // console.log(data);
 
-      // 전체 데이터 확인
-      console.log(data)
+        // // 이름 출력
+        // console.log(data.names);
 
-      // // 이름 출력
-      // console.log(data.names);
+        // 이름을 무조건 가져오게 하기
+        data.names.find((element) => {
+          // 언어 이름 지정
+          const languageName = element.language.name;
+          // 한국어 지정 시에
+          if (languageName == "ko") {
+            // 해당 이름 출력
+            const krName = element.name;
+            // console.log(krName);
+            // 지정
+            resultName = krName;
+          }
+        });
 
-      // 이름을 무조건 가져오게 하기
-      data.names.find((element) => {
-        
-        // 언어 이름 지정
-        const languageName = element.language.name
-        // 한국어 지정 시에
-        if (languageName == "ko") {
-          // 해당 이름 출력
-          const krName = element.name
-          console.log(krName);
-        }
+        // resultName 반환
+        return resultName;
+        // console.log(data.names[2].name);
       });
 
-      // console.log(data.names[2].name);
-    });
-
-
-    // fetch 진행(이미지 받기)
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}/`, {
-    // GET 요청 받음
-    method: "GET",
-    // application/json 요청
-    headers: { "Content-type": "applicaion/json" },
-  })
-    //   받은 대답을 json => 객체로 변환
-    .then((res) => res.json())
-    // 객체로 변환한 데이터를 받고,
-    .then((data) => {
-
-      // 전체 데이터 확인
-      console.log(data)
-
-      // 전체 데이터에서
-      // 이미지를 불러옴
-      // sprites.front_default 가져옴
-      const sprite = data.sprites.front_default
-
-      // 출력 테스트
-      console.log(sprite)
-
-
+  // fetch 진행(이미지 받기)
+  const fetchImg = (pokeUrl) =>
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}/`, {
+      // GET 요청 받음
+      method: "GET",
+      // application/json 요청
+      headers: { "Content-type": "applicaion/json" },
     })
+      //   받은 대답을 json => 객체로 변환
+      .then((res) => res.json())
+      // 객체로 변환한 데이터를 받고,
+      .then((data) => {
+        // 전체 데이터 확인
+        // console.log(data);
 
+        // 전체 데이터에서
+        // 이미지를 불러옴
+        // sprites.front_default 가져옴
+        const sprite = data.sprites.front_default;
 
+        // 출력 테스트
+        // console.log(sprite)
+
+        // 반환
+        return sprite;
+      });
+
+  // resultApiDatas 지정
+  // 비동기 작업후 받을 api 데이터 배열
+  let resultApiDatas;
+
+  // Promise.all 진행
+  Promise.all([fetchName(pokeUrl), fetchImg(pokeUrl)]).then((data) => {
+    console.log(data);
+    // data를 resultApiDatas에 대입
+    resultApiDatas = data
+  });
 });
