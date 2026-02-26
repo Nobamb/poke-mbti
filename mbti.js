@@ -65,11 +65,11 @@ const MBTI = [
 ];
 
 
-MBTI.forEach((one)=>{
+// MBTI.forEach((one)=>{
 
-    console.log(one.mbti)
+//     console.log(one.mbti)
 
-})
+// })
 
 
 
