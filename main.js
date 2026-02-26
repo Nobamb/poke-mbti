@@ -1,7 +1,7 @@
 // mbti 가져옴
-import MBTI from "./mbti.js";
+import MBTI from "./data/mbti.js";
 // pokemon 가져옴
-import pokemon from "./pokemon.js";
+import pokemon from "./data/pokemon.js";
 
 // fetch 관련 함수들 가져옴
 import fetchImg from "./fetchFunc/fetchImg.js";
