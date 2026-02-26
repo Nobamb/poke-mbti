@@ -3,6 +3,16 @@ import MBTI from "./mbti.js";
 // pokemon 가져옴
 import pokemon from "./pokemon.js";
 
+// fetch 관련 함수들 가져옴
+import fetchImg from "./fetchFunc/fetchImg.js";
+import fetchName from "./fetchFunc/fetchName.js";
+
+// pokeMBTIdatas 가져옴
+import pokeMBTIdatas from "./data/pokeMBTIdatas.js";
+// getDatas 가져옴
+import getDatas from "./func/getDatas.js";
+
+
 // 버튼 요소를 받음
 const formButton = document.querySelector("form>button");
 
@@ -34,40 +44,40 @@ formButton.addEventListener("click", (e) => {
 
   // 객체 지정
   // 포켓몬,mbti관련 데이터
-  const pokeMBTIdatas = {
-    getPokemon: "",
-    getMBTIData: "",
-  };
+  // const pokeMBTIdatas = {
+  //   getPokemon: "",
+  //   getMBTIData: "",
+  // };
 
   // getMBTIValue를 가져와서 mbti와 pokemon의 mbti값 비교
   // value(클라이언트에서 지정한 mbti 값), pokemon, mbti 지정
 
-  const getDatas = (value, pokemon, mbti) => {
-    // 배열을 지정
-    // pokemon, mbti
-    const datas = [pokemon, mbti];
+  // const getDatas = (value, pokemon, mbti) => {
+  //   // 배열을 지정
+  //   // pokemon, mbti
+  //   const datas = [pokemon, mbti];
 
-    // data를 모두 순회하여 foreach실행
-    datas.forEach((elements, index) => {
-      // 인덱스 지정
-      const dataIndex = index;
+  //   // data를 모두 순회하여 foreach실행
+  //   datas.forEach((elements, index) => {
+  //     // 인덱스 지정
+  //     const dataIndex = index;
 
-      elements.forEach((element) => {
-        // 만약에 dataIndex가 0이고
-        // 해당 mbti가 동일 할 때
-        if (dataIndex === 0 && element.mbti === value) {
-          // getPokemon을 저장
-          pokeMBTIdatas.getPokemon = element;
-        }
-        // 만약에 dataIndex가 1이고
-        // 해당 mbti가 동일 할 때
-        if (dataIndex === 1 && element.mbti === value) {
-          // getMBTIData를 저장
-          pokeMBTIdatas.getMBTIData = element;
-        }
-      });
-    });
-  };
+  //     elements.forEach((element) => {
+  //       // 만약에 dataIndex가 0이고
+  //       // 해당 mbti가 동일 할 때
+  //       if (dataIndex === 0 && element.mbti === value) {
+  //         // getPokemon을 저장
+  //         pokeMBTIdatas.getPokemon = element;
+  //       }
+  //       // 만약에 dataIndex가 1이고
+  //       // 해당 mbti가 동일 할 때
+  //       if (dataIndex === 1 && element.mbti === value) {
+  //         // getMBTIData를 저장
+  //         pokeMBTIdatas.getMBTIData = element;
+  //       }
+  //     });
+  //   });
+  // };
 
   // getdatas 실행
   getDatas(getMBTIValue, pokemon, MBTI);
@@ -113,72 +123,72 @@ formButton.addEventListener("click", (e) => {
 
   console.log(pokeUrl);
 
-  // fetch 진행(이름 가져오기)
-  const fetchName = (pokeUrl) =>
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeUrl}/`, {
-      // GET 요청 받음
-      method: "GET",
-      // application/json 요청
-      headers: { "Content-type": "applicaion/json" },
-    })
-      //   받은 대답을 json => 객체로 변환
-      .then((res) => res.json())
-      // 객체로 변환한 데이터를 받고,
-      .then((data) => {
-        // 내보낼 이름
-        // 초기화
-        let resultName;
-        // 전체 데이터 확인
-        // console.log(data);
+  // // fetch 진행(이름 가져오기)
+  // const fetchName = (pokeUrl) =>
+  //   fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeUrl}/`, {
+  //     // GET 요청 받음
+  //     method: "GET",
+  //     // application/json 요청
+  //     headers: { "Content-type": "applicaion/json" },
+  //   })
+  //     //   받은 대답을 json => 객체로 변환
+  //     .then((res) => res.json())
+  //     // 객체로 변환한 데이터를 받고,
+  //     .then((data) => {
+  //       // 내보낼 이름
+  //       // 초기화
+  //       let resultName;
+  //       // 전체 데이터 확인
+  //       // console.log(data);
 
-        // // 이름 출력
-        // console.log(data.names);
+  //       // // 이름 출력
+  //       // console.log(data.names);
 
-        // 이름을 무조건 가져오게 하기
-        data.names.find((element) => {
-          // 언어 이름 지정
-          const languageName = element.language.name;
-          // 한국어 지정 시에
-          if (languageName == "ko") {
-            // 해당 이름 출력
-            const krName = element.name;
-            // console.log(krName);
-            // 지정
-            resultName = krName;
-          }
-        });
+  //       // 이름을 무조건 가져오게 하기
+  //       data.names.find((element) => {
+  //         // 언어 이름 지정
+  //         const languageName = element.language.name;
+  //         // 한국어 지정 시에
+  //         if (languageName == "ko") {
+  //           // 해당 이름 출력
+  //           const krName = element.name;
+  //           // console.log(krName);
+  //           // 지정
+  //           resultName = krName;
+  //         }
+  //       });
 
-        // resultName 반환
-        return resultName;
-        // console.log(data.names[2].name);
-      });
+  //       // resultName 반환
+  //       return resultName;
+  //       // console.log(data.names[2].name);
+  //     });
 
-  // fetch 진행(이미지 받기)
-  const fetchImg = (pokeUrl) =>
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}/`, {
-      // GET 요청 받음
-      method: "GET",
-      // application/json 요청
-      headers: { "Content-type": "applicaion/json" },
-    })
-      //   받은 대답을 json => 객체로 변환
-      .then((res) => res.json())
-      // 객체로 변환한 데이터를 받고,
-      .then((data) => {
-        // 전체 데이터 확인
-        // console.log(data);
+  // // fetch 진행(이미지 받기)
+  // const fetchImg = (pokeUrl) =>
+  //   fetch(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}/`, {
+  //     // GET 요청 받음
+  //     method: "GET",
+  //     // application/json 요청
+  //     headers: { "Content-type": "applicaion/json" },
+  //   })
+  //     //   받은 대답을 json => 객체로 변환
+  //     .then((res) => res.json())
+  //     // 객체로 변환한 데이터를 받고,
+  //     .then((data) => {
+  //       // 전체 데이터 확인
+  //       // console.log(data);
 
-        // 전체 데이터에서
-        // 이미지를 불러옴
-        // sprites.front_default 가져옴
-        const sprite = data.sprites.front_default;
+  //       // 전체 데이터에서
+  //       // 이미지를 불러옴
+  //       // sprites.front_default 가져옴
+  //       const sprite = data.sprites.front_default;
 
-        // 출력 테스트
-        // console.log(sprite)
+  //       // 출력 테스트
+  //       // console.log(sprite)
 
-        // 반환
-        return sprite;
-      });
+  //       // 반환
+  //       return sprite;
+  //     });
 
   // resultApiDatas 지정
   // 비동기 작업후 받을 api 데이터 배열
