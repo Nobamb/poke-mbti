@@ -1,5 +1,5 @@
 // fetch 진행(이름 가져오기)
-const fetchName = (pokeUrl) =>
+const fetchNameDescription = (pokeUrl) =>
   fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeUrl}/`, {
     // GET 요청 받음
     method: "GET",
@@ -10,11 +10,15 @@ const fetchName = (pokeUrl) =>
     .then((res) => res.json())
     // 객체로 변환한 데이터를 받고,
     .then((data) => {
-      // 내보낼 이름
-      // 초기화
-      let resultName;
+      // 내보낼 이름과 설명
+      let result = {
+
+        name : "",
+        description : ""
+
+      };
       // 전체 데이터 확인
-      // console.log(data);
+      console.log(data);
 
       // // 이름 출력
       // console.log(data.names);
@@ -29,14 +33,29 @@ const fetchName = (pokeUrl) =>
           const krName = element.name;
           // console.log(krName);
           // 지정
-          resultName = krName;
+          result.name = krName;
         }
       });
 
-      // resultName 반환
-      return resultName;
+      // 설명도 가져오게 하기
+      data.flavor_text_entries.find((element)=>{
+        // language의 name 지정
+        const langaugeName = element.language.name;
+        // langaugeName이 ko일 때
+        if(langaugeName === "ko"){
+          // 한국어 설명 지정
+          const krDescription = element.flavor_text;
+          // 지정
+          result.description = krDescription
+        }
+
+      })
+
+
+      // result 반환
+      return result;
       // console.log(data.names[2].name);
     });
 
 // 내보내기
-export default fetchName;
+export default fetchNameDescription;
