@@ -120,7 +120,7 @@ formButton.addEventListener("click", (e) => {
   // getPokemon의 id로 결정
   const pokeUrl = pokeMBTIdatas.getPokemon.id;
 
-  console.log(pokeUrl);
+  // console.log(pokeUrl);
 
   // // fetch 진행(이름 가져오기)
   // const fetchName = (pokeUrl) =>
@@ -192,7 +192,7 @@ formButton.addEventListener("click", (e) => {
   // Promise.all 진행
   Promise.all([fetchNameDescription(pokeUrl), fetchImg(pokeUrl)]).then(
     (data) => {
-      console.log(data);
+      // console.log(data);
       // 요소 생성
       const newElement = {
         // 이미지
