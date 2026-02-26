@@ -7,12 +7,10 @@ import pokemon from "./pokemon.js";
 import fetchImg from "./fetchFunc/fetchImg.js";
 import fetchNameDescription from "./fetchFunc/fetchNameDescription.js";
 
-
 // pokeMBTIdatas 가져옴
 import pokeMBTIdatas from "./data/pokeMBTIdatas.js";
 // getDatas 가져옴
 import getDatas from "./func/getDatas.js";
-
 
 // 버튼 요소를 받음
 const formButton = document.querySelector("form>button");
@@ -191,14 +189,53 @@ formButton.addEventListener("click", (e) => {
   //       return sprite;
   //     });
 
-  // resultApiDatas 지정
-  // 비동기 작업후 받을 api 데이터 배열
-  let resultApiDatas;
-
   // Promise.all 진행
-  Promise.all([fetchNameDescription(pokeUrl), fetchImg(pokeUrl)]).then((data) => {
-    console.log(data);
-    // data를 resultApiDatas에 대입
-    resultApiDatas = data
-  });
+  Promise.all([fetchNameDescription(pokeUrl), fetchImg(pokeUrl)]).then(
+    (data) => {
+      console.log(data);
+      // 요소 생성
+      const newElement = {
+        // 이미지
+        pokeResultImg: document.createElement("img"),
+        // 포켓몬 이름
+        pokeName: document.createElement("span"),
+        // 포켓몬 설명
+        pokeDescription: document.createElement("p"),
+        // mbti
+        MBTIName: document.createElement("span"),
+        // mbti설명
+        MBTIDescription: document.createElement("p"),
+      };
+
+      // img의 src 지정
+      newElement.pokeResultImg.src = data[1];
+
+      // 포켓몬 이름 지정
+      newElement.pokeName.innerHTML = data[0].name
+
+      // 포켓몬 설명 지정
+      newElement.pokeDescription.innerHTML = data[0].description
+
+      // mbti 지정
+      newElement.MBTIName.innerHTML = pokeMBTIdatas.getMBTIData.mbti
+
+      // mbti 설명 지정
+      newElement.MBTIDescription.innerHTML = pokeMBTIdatas.getMBTIData.description
+
+      // value 값들을 모두 배열 처리
+      const elementArr = Object.values(newElement);
+      // poke-result 요소 가져옴
+      const pokeResult = document.getElementById("poke-result");
+
+      // 요소 초기화
+      pokeResult.innerHTML = ""
+
+
+      // poke-result에 각각의 요소들 다때려넣음
+      elementArr.forEach((element) => {
+        // 요소들 하나씩 추가
+        pokeResult.append(element);
+      });
+    },
+  );
 });
