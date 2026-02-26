@@ -70,3 +70,8 @@ MBTI.forEach((one)=>{
     console.log(one.mbti)
 
 })
+
+
+
+// MBTI export
+export default MBTI
