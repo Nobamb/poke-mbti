@@ -18,7 +18,7 @@ const fetchNameDescription = (pokeUrl) =>
 
       };
       // 전체 데이터 확인
-      console.log(data);
+      // console.log(data);
 
       // // 이름 출력
       // console.log(data.names);
