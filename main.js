@@ -28,43 +28,98 @@ formButton.addEventListener("click", (e) => {
   // console.log(getMBTI)
 
   // 포켓몬과 mbti 변수 초기화
-  let getPokemon;
-  let getMBTIData;
+
+  // let getPokemon;
+  // let getMBTIData;
+
+  // 객체 지정
+  // 포켓몬,mbti관련 데이터
+  const pokeMBTIdatas = {
+    getPokemon: "",
+    getMBTIData: "",
+  };
 
   // getMBTIValue를 가져와서 mbti와 pokemon의 mbti값 비교
+  // value(클라이언트에서 지정한 mbti 값), pokemon, mbti 지정
 
-  // pokemon과 비교
-  pokemon.forEach((element) => {
-    // 만약에 element의 mbti와
-    // getMBTIValue가 동일하다면
-    if (element.mbti === getMBTIValue) {
-    
-      // getPokemon을 저장
-      getPokemon = element
-    
-    }
-  });
+  const getDatas = (value, pokemon, mbti) => {
+    // 배열을 지정
+    // pokemon, mbti
+    const datas = [pokemon, mbti];
 
-  // mbti와 비교
-  MBTI.forEach((element) => {
-    // 만약에 element의 mbti와
-    // getMBTIValue가 동일하다면
-    if (element.mbti === getMBTIValue) {
-    
-      // getPokemon을 저장
-      getMBTIData = element
-    
-    }
-  });
+    // data를 모두 순회하여 foreach실행
+    datas.forEach((elements, index) => {
+      // 인덱스 지정
+      const dataIndex = index;
 
-  // 결과 출력 테스트
-  // 포켓몬(이름 출력하게 해봄)
-  console.log(getPokemon.name)
-  // MBTI(설명 출력하게 해봄)
-  console.log(getMBTIData.description)
+      elements.forEach((element) => {
+        // 만약에 dataIndex가 0이고
+        // 해당 mbti가 동일 할 때
+        if (dataIndex === 0 && element.mbti === value) {
+          // getPokemon을 저장
+          pokeMBTIdatas.getPokemon = element;
+        }
+        // 만약에 dataIndex가 1이고
+        // 해당 mbti가 동일 할 때
+        if (dataIndex === 1 && element.mbti === value) {
+          // getMBTIData를 저장
+          pokeMBTIdatas.getMBTIData = element;
+        }
+      });
+    });
+  };
 
-  // fetch 진행
-  fetch(`https://pokeapi.co/api/v2/pokemon-species/${inputValue}/`, {
+  // getdatas 실행
+  getDatas(getMBTIValue, pokemon, MBTI);
+
+  // // getPokemon출력해보기
+  // console.log(pokeMBTIdatas.getPokemon);
+  // // getMBTIData출력해보기
+  // console.log(pokeMBTIdatas.getMBTIData);
+
+  // // pokemon과 비교
+  // pokemon.forEach((element) => {
+  //   // 만약에 element의 mbti와
+  //   // getMBTIValue가 동일하다면
+  //   if (element.mbti === getMBTIValue) {
+
+  //     // getPokemon을 저장
+  //     getPokemon = element
+
+  //   }
+  // });
+
+  // // mbti와 비교
+  // MBTI.forEach((element) => {
+  //   // 만약에 element의 mbti와
+  //   // getMBTIValue가 동일하다면
+  //   if (element.mbti === getMBTIValue) {
+
+  //     // getPokemon을 저장
+  //     getMBTIData = element
+
+  //   }
+  // });
+
+  // // 결과 출력 테스트
+  // // 포켓몬(이름 출력하게 해봄)
+  // console.log(getPokemon.name)
+  // // MBTI(설명 출력하게 해봄)
+  // console.log(getMBTIData.description)
+
+  // 특정 포켓몬의 주소 지정
+  // getPokemon의 id로 결정
+  const pokeUrl = pokeMBTIdatas.getPokemon.id;
+
+  console.log(pokeUrl);
+
+
+
+
+
+
+  // fetch 진행(이름 가져오기)
+  fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeUrl}/`, {
     // GET 요청 받음
     method: "GET",
     // application/json 요청
@@ -74,7 +129,55 @@ formButton.addEventListener("click", (e) => {
     .then((res) => res.json())
     // 객체로 변환한 데이터를 받고,
     .then((data) => {
-      // 이름 출력
-      console.log(data.names[2].name);
+
+      // 전체 데이터 확인
+      console.log(data)
+
+      // // 이름 출력
+      // console.log(data.names);
+
+      // 이름을 무조건 가져오게 하기
+      data.names.find((element) => {
+        
+        // 언어 이름 지정
+        const languageName = element.language.name
+        // 한국어 지정 시에
+        if (languageName == "ko") {
+          // 해당 이름 출력
+          const krName = element.name
+          console.log(krName);
+        }
+      });
+
+      // console.log(data.names[2].name);
     });
+
+
+    // fetch 진행(이미지 받기)
+  fetch(`https://pokeapi.co/api/v2/pokemon/${pokeUrl}/`, {
+    // GET 요청 받음
+    method: "GET",
+    // application/json 요청
+    headers: { "Content-type": "applicaion/json" },
+  })
+    //   받은 대답을 json => 객체로 변환
+    .then((res) => res.json())
+    // 객체로 변환한 데이터를 받고,
+    .then((data) => {
+
+      // 전체 데이터 확인
+      console.log(data)
+
+      // 전체 데이터에서
+      // 이미지를 불러옴
+      // sprites.front_default 가져옴
+      const sprite = data.sprites.front_default
+
+      // 출력 테스트
+      console.log(sprite)
+
+
+    })
+
+
 });
