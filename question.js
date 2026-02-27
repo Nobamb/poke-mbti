@@ -25,16 +25,15 @@ const question = () => {
     const mbtiQuestionSection = document.createElement("section");
     // ul 지정
     // section 내부에 ul 깔아두기
+    const mbtiQuestionUl = document.createElement("ul")
 
+
+    // mbtiQuestionSection을 넣기
+    document.querySelector("body").insertAdjacentElement("afterbegin",mbtiQuestionSection)
 
 
     // mbti question에 질문들 넣기
-    mbtiQuestion.
-
-
-    // mbtiQuestion 집어넣기(body 안)
-    document.querySelector("body").insertAdjacentElement("afterbegin",mbtiQuestion)
-
+    mbtiQuestionSection.append(mbtiQuestionUl)
 
 
   });
