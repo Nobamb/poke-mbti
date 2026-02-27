@@ -1,5 +1,7 @@
 // 전체 기능 export 하도록 함수로 감쌈
 
+import getResultAPI from "./func/getResultAPI.js";
+
 const MBTIQustions = [
   // 1. I(내향) vs E(외향)
   [
@@ -41,6 +43,11 @@ const MBTIQustions = [
 // 기본값 0
 let MBTIIndex = 0;
 
+// getResultAPI에 전달할 MBTI
+// 기본값
+let sendMBTIResult = "ISTP"
+
+
 const question = () => {
   // poke-mbti 요소 지정
   const pokeMBTI = document.getElementById("poke-mbti");
@@ -75,26 +82,45 @@ const question = () => {
     // mbti question에 질문들 넣기
     mbtiQuestionSection.append(mbtiQuestionUl);
 
+    // form 지정
+    const mbtiQuestionForm = document.createElement("form")
+
+    // form을 section에 넣음
+    mbtiQuestionSection.append(mbtiQuestionForm)
+
     // button 지정
     const nextButton = document.createElement("button");
 
     // button에 새롭게 newQuestion 실행
-    nextButton.addEventListener("click", () => {
-      // mbti 1증가
-      MBTIIndex++;
+    nextButton.addEventListener("click", (e) => { 
 
+      // 이벤트 방지
+      e.preventDefault()
+
+      // 최대 인덱스 지정
+      const maxIndex = MBTIQustions.length - 1;
       // poke-mbti에 innerhtml 제거
-      pokeMBTI.innerHTML = ""
-
-      // newQuestion 실행
-      newQuestion(MBTIIndex);
+      pokeMBTI.innerHTML = "";
+      // 만약에 mbtiindex가
+      // MBTIQustions의 length - 1(최대 인덱스) 미만이라면
+      if (MBTIIndex < maxIndex) {
+        // mbti 1증가
+        MBTIIndex++;
+        // newQuestion 실행
+        newQuestion(MBTIIndex);
+      }
+      //아니라면
+      else {
+        // getresultapi 실행
+        getResultAPI(sendMBTIResult)
+      }
     });
 
     // button에 텍스트 지정
     nextButton.innerText = "다음";
 
-    // button을 section에 넣기
-    mbtiQuestionSection.append(nextButton);
+    // button을 form에 넣기
+    mbtiQuestionForm.append(nextButton);
   };
 
   // 로딩시에
