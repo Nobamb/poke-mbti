@@ -15,6 +15,11 @@ import getDatas from "./func/getDatas.js";
 // 버튼 요소를 받음
 const formButton = document.querySelector("form>button");
 
+
+// quesition 받음
+import question from "./question.js";
+
+
 // 버튼 연결 테스트
 // console.log(formButton)
 
@@ -239,3 +244,12 @@ formButton.addEventListener("click", (e) => {
     },
   );
 });
+
+
+
+
+
+
+// qustion 실행
+// mbti 관련 질문들을 하도록 함
+question()
