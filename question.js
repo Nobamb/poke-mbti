@@ -11,6 +11,32 @@ const question = () => {
 
   document.addEventListener("DOMContentLoaded", () => {
     // console.log("연결 성공");
+    // 질문들 모음
+    const questionIE = [
+      "나는 새로운 사람들과 처음 만나는 자리에서 먼저 대화를 주도하는 편은 아니다.",
+      "집에 있는 것이 밖에 나가는 것 보다 에너지가 덜 소모된다.",
+      "나는 생각한 것을 말로 바로 내뱉기보다, 머릿속으로 정리한 뒤에 말하는 편이다.",
+      "여러 명과 시끌벅적하게 노는 것보다 1~2명의 친한 친구와 조용히 만나는 게 좋다.",
+      "주목받는 상황이 생기면 즐기기보다는 부담감을 먼저 느낀다.",
+    ];
+
+    // mbti question1 지정
+    // section
+    const mbtiQuestionSection = document.createElement("section");
+    // ul 지정
+    // section 내부에 ul 깔아두기
+
+
+
+    // mbti question에 질문들 넣기
+    mbtiQuestion.
+
+
+    // mbtiQuestion 집어넣기(body 안)
+    document.querySelector("body").insertAdjacentElement("afterbegin",mbtiQuestion)
+
+
+
   });
 
   // 2. S (감각) vs N (직관)
@@ -38,6 +64,5 @@ const question = () => {
   // 일이 몰려와도 "어떻게든 되겠지"라는 생각을 좋아하지 않는다.
 };
 
-
 // export
-export default question
+export default question;
