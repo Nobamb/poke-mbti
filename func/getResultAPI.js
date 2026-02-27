@@ -14,27 +14,29 @@ import getDatas from "../func/getDatas.js";
 
 
 // 포켓몬 api를 받는 함수
-const getResultAPI = () => {
-  // 버튼 요소를 받음
-  const formButton = document.querySelector("form>button");
+const getResultAPI = (mbtiValue) => {
+//   // 버튼 요소를 받음
+//   const formButton = document.querySelector("form>button");
 
-  // 버튼 연결 테스트
-  // console.log(formButton)
+//   // 버튼 연결 테스트
+//   // console.log(formButton)
 
-  // 포켓몬 데이터를 먼저 받아보기
+//   // 포켓몬 데이터를 먼저 받아보기
 
-  // 버튼 받을 경우
-  formButton.addEventListener("click", (e) => {
+//   // 버튼 받을 경우
+//   formButton.addEventListener("click", (e) => {
     // 이벤트 막기
     // 새로고침 방지
     // ajax
-    e.preventDefault();
+    // e.preventDefault();
 
     // data 받기
-    const inputValue = document.querySelector("form>input").value;
+    // const inputValue = document.querySelector("form>input").value;
 
     // data의 값을 보정(무조건 대문자로 보정)
-    const getMBTIValue = inputValue.toUpperCase();
+    // const getMBTIValue = inputValue.toUpperCase();
+    const getMBTIValue = mbtiValue.toUpperCase();
+
 
     // mbti 출력 테스트
     // console.log(getMBTI)
@@ -82,7 +84,10 @@ const getResultAPI = () => {
     // };
 
     // getdatas 실행
+    // getDatas(getMBTIValue, pokemon, MBTI);
+
     getDatas(getMBTIValue, pokemon, MBTI);
+
 
     // // getPokemon출력해보기
     // console.log(pokeMBTIdatas.getPokemon);
@@ -241,7 +246,7 @@ const getResultAPI = () => {
         });
       },
     );
-  });
+//   });
 };
 
 
