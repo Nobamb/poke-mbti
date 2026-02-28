@@ -184,3 +184,30 @@ ul{
     border-radius: 30px;
 
 }
+
+
+
+/* 포지션 ============================= */
+
+.relative {
+
+    position: relative;
+
+}
+
+.absolute {
+
+    position: absolute;
+
+}
+
+
+
+
+/* 포지션 관련 위치 ==============================*/
+
+.top-30px{
+
+    top: 30px;
+
+}
