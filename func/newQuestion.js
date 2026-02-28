@@ -15,6 +15,14 @@ const newQuestion = (index) => {
   // section 내부에 ul 깔아두기
   const mbtiQuestionUl = document.createElement("ul");
 
+  // flex direction column 지정
+  mbtiQuestionUl.classList.add("flex")
+  mbtiQuestionUl.classList.add("flex-direction-column")
+  // gap은 20px
+  mbtiQuestionUl.classList.add("gap-20px")
+
+
+
   // questionIE에 있는 문구들을 나눔
   questionIE.forEach((element) => {
     // li 생성
@@ -30,6 +38,11 @@ const newQuestion = (index) => {
     // li에 값을 넣음
     mbtiLi.innerText = element;
 
+    // li에 flex, gap 5px 부여
+    mbtiLi.classList.add("flex")
+    mbtiLi.classList.add("gap-5px")
+
+
     // mbtiQuestionUl(ul)에 mbtiLi(li)를 넣기
     mbtiQuestionUl.append(mbtiLi);
     // li에는 checkbox도 넣음
@@ -43,6 +56,14 @@ const newQuestion = (index) => {
   // form 지정
   const mbtiQuestionForm = document.createElement("form");
 
+  // form에 flex direction column 지정
+  mbtiQuestionForm.classList.add("flex")
+  mbtiQuestionForm.classList.add("flex-direction-column")
+  // align-items center 지정
+  mbtiQuestionForm.classList.add("align-center")
+  // gap은 50px 지정
+  mbtiQuestionForm.classList.add("gap-50px")
+
   // mbti question form에 질문들 넣기
   mbtiQuestionForm.append(mbtiQuestionUl);
 
@@ -54,6 +75,15 @@ const newQuestion = (index) => {
 
   // button에 텍스트 지정
   nextButton.innerText = "다음";
+
+  // class 지정(width300, height70)
+
+  nextButton.classList.add("width300")
+  nextButton.classList.add("height70")
+
+  // 폰트 사이즈 32px 지정
+  nextButton.classList.add("font-24px")
+
 
   // button을 form에 넣기
   mbtiQuestionForm.append(nextButton);
