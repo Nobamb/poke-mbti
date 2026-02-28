@@ -25,6 +25,20 @@ const getResultAPI = (mbtiValue) => {
   const pokeResult = document.createElement("form");
   pokeResult.id = "poke-result";
 
+  // poke-result class 지정
+  // flex direction column
+  pokeResult.classList.add("flex")
+  pokeResult.classList.add("flex-direction-column")
+
+  // justify center align center
+  pokeResult.classList.add("justify-center")
+  pokeResult.classList.add("align-center")
+
+  // gap 20px
+  pokeResult.classList.add("gap-20px")
+
+
+
   // inner에 붙여넣음
   document
     .getElementById("inner")
@@ -219,11 +233,11 @@ const getResultAPI = (mbtiValue) => {
         // 이미지
         pokeResultImg: document.createElement("img"),
         // 포켓몬 이름
-        pokeName: document.createElement("span"),
+        pokeName: document.createElement("h2"),
         // 포켓몬 설명
         pokeDescription: document.createElement("p"),
         // mbti
-        MBTIName: document.createElement("span"),
+        MBTIName: document.createElement("h3"),
         // mbti설명
         MBTIDescription: document.createElement("p"),
       };
@@ -258,6 +272,17 @@ const getResultAPI = (mbtiValue) => {
 
       // 버튼에 텍스트 달기
       retryButton.innerText = "다시 해보시겠어요?";
+
+
+      // 버튼에 class 적용
+
+      // 크기 관련
+      retryButton.classList.add("width300")
+      retryButton.classList.add("height70")
+
+      // 폰트 크기 관련
+      retryButton.classList.add("font-24px")
+
 
       // 버튼을 form에 달기
       pokeResult.append(retryButton);
