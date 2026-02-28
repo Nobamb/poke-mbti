@@ -15,8 +15,8 @@ const MBTIQustions = [
   // 2. S (감각) vs N (직관)
   [
     "나는 내가 보고 느낀 '사실'보단 직접 경험해보지 않은 일을 신뢰하는 편이다.",
-    "  설명서를 읽을 때, 구체적이고 명확한 수치보단 비유적인 표현이 편하다.",
-    "  나는 종종 일어날 법하지 않은 엉뚱한 상상을 하느라 시간 가는 줄 모를 때가 있다.",
+    "설명서를 읽을 때, 구체적이고 명확한 수치보단 비유적인 표현이 편하다.",
+    "나는 종종 일어날 법하지 않은 엉뚱한 상상을 하느라 시간 가는 줄 모를 때가 있다.",
     "어떤 사물을 볼 때 그 자체의 모습보다 그것이 가진 '숨은 의미'나 '미래의 가능성'을 본다.",
     "남들이 '원래 다 그래'라고 하는 관습적인 방식보다, 나만의 새로운 방식을 찾는 게 즐겁다.",
   ],
@@ -27,7 +27,7 @@ const MBTIQustions = [
     "나는 감정적인 호소보다는 논리적이고 객관적인 근거를 가진 주장에 더 설득당한다.",
     "갈등이 생겼을 때, 관계가 서먹해지더라도 잘못된 부분은 확실히 짚고 넘어가야 한다.",
     "나는 주변 사람들의 기분 변화에 대해 눈치를 챈 편이 많지 않다.",
-    "이 결정으로 인해 상처받을 사람이 없는지 보다결정을 내릴 때 그것이 정답인지에 집중한다.",
+    "이 결정으로 인해 상처받을 사람이 없는지 보다 결정을 내릴 때 그것이 정답인지에 집중한다.",
   ],
 
   // 4. J (판단) vs P (인식)
@@ -45,8 +45,18 @@ let MBTIIndex = 0;
 
 // getResultAPI에 전달할 MBTI
 // 기본값
-let sendMBTIResult = "ISTP"
+let sendMBTIResult = [];
 
+// MBTI 리스트
+// 전체 배열은 I/E => N/S => T/P => J/P 순
+// 세부 배열은 0번째는 체크가 많은 쪽, 1번째는 체크가 적은 쪽
+
+const mbtiList = [
+  ["I", "E"],
+  ["N", "S"],
+  ["T", "F"],
+  ["J", "P"],
+];
 
 const question = () => {
   // poke-mbti 요소 지정
@@ -71,44 +81,83 @@ const question = () => {
       const mbtiLi = document.createElement("li");
 
       // li에 넣을 checkbox 지정
-      const mbtiCheckbox = document.createElement("input")
+      const mbtiCheckbox = document.createElement("input");
 
       // 체크 박스의 설정 지정
       // checkbox는 type checkbox로 지정
-      mbtiCheckbox.type = "checkbox" 
+      mbtiCheckbox.type = "checkbox";
 
       // li에 값을 넣음
       mbtiLi.innerText = element;
 
-      
-      
       // mbtiQuestionUl(ul)에 mbtiLi(li)를 넣기
       mbtiQuestionUl.append(mbtiLi);
       // li에는 checkbox도 넣음
-      mbtiLi.append(mbtiCheckbox)
+      mbtiLi.append(mbtiCheckbox);
     });
 
     // poke-mbti에
     // mbtiQuestionSection을 넣기
     pokeMBTI.insertAdjacentElement("afterbegin", mbtiQuestionSection);
-    
+
     // form 지정
-    const mbtiQuestionForm = document.createElement("form")
+    const mbtiQuestionForm = document.createElement("form");
 
     // mbti question form에 질문들 넣기
     mbtiQuestionForm.append(mbtiQuestionUl);
-    
+
     // form을 section에 넣음
-    mbtiQuestionSection.append(mbtiQuestionForm)
+    mbtiQuestionSection.append(mbtiQuestionForm);
 
     // button 지정
     const nextButton = document.createElement("button");
 
     // button에 새롭게 newQuestion 실행
-    nextButton.addEventListener("click", (e) => { 
-
+    nextButton.addEventListener("click", (e) => {
       // 이벤트 방지
-      e.preventDefault()
+      e.preventDefault();
+
+      // mbtiQuestionForm의 전체 체크 파악
+      const maxMBTI = mbtiQuestionForm.length - 1;
+
+      // 전체 체크에서 절반 지정
+      // round로 반올림
+      const averageMBTI = Math.round(maxMBTI/2)
+
+      // console.log
+      console.log(averageMBTI)
+
+      // 체크된 mbti의 개수 지정
+      let MBTICheck = 0
+
+
+
+      // mbtiQuestionUl 안의 input 순회함
+
+      const mbtiInputValues = mbtiQuestionUl.querySelectorAll("input")
+
+      mbtiInputValues.forEach((element)=>{
+
+        // console.log(element.checked)
+        // 만약에 element가 checked되었을 때
+        if(element.checked){
+          // mbtiCheck값 1 증가
+          MBTICheck++
+        }
+      })
+
+      // mbtiCheck의 값에 따라 결정
+      // mbtiCheck의 값이 maxMBTI의 절반 이상일 때
+      if(MBTICheck >= averageMBTI){
+        sendMBTIResult += mbtiList[MBTIIndex][0]
+      }
+      // 그러지 않을 때
+      else{
+
+        sendMBTIResult += mbtiList[MBTIIndex][1]
+      }
+
+
 
       // 최대 인덱스 지정
       const maxIndex = MBTIQustions.length - 1;
@@ -125,7 +174,7 @@ const question = () => {
       //아니라면
       else {
         // getresultapi 실행
-        getResultAPI(sendMBTIResult)
+        getResultAPI(sendMBTIResult);
       }
     });
 
