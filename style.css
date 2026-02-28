@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/* 전체 설정 */
+
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+
+}
+
+
+ul{
+
+    list-style: none;
+
+}
+
+
+
+
+
+
+
+
+/* 유틸리티 클래스 */
+
+
+
+
+/* 정렬 관련 ======================================== */
+
+
+/* display flex */
+.flex{
+
+    display: flex;
+
+}
+
+/* flex 방향 */
+/* 열 방향 */
+.flex-direction-column{
+
+    flex-direction: column;
+
+}
+
+
+/* justify center */
+
+.justify-center{
+
+    justify-content: center;
+
+}
+
+
+/* align items center*/
+
+.align-center{
+
+    align-items: center;
+
+}
+
+
+
+
+/* 수치 관련 ===================================*/
+
+
+/* 가로 100퍼센트 */
+.width100vw{
+
+    width: 100vw;
+
+}
+
+
+/* 세로 100vh */
+.height100vh{
+
+    height: 100vh;
+
+}
+
+
+/* 가로 800px */
+.width700{
+
+    width: 700px;
+
+}
+
+/* 세로 600px */
+.height500{
+
+    height: 500px;
+
+}
+
+
+/* 가로 300px */
+.width300{
+
+    width: 300px;
+
+}
+
+/* 세로 70px */
+.height70{
+
+    height: 70px;
+
+}
+
+
+
+
+/* gap 50px */
+
+.gap-50px{
+
+    gap: 50px;
+
+}
+
+
+/* gap 20px */
+
+.gap-20px{
+
+    gap: 20px;
+
+}
+
+/* gap 5px */
+
+.gap-5px{
+
+    gap: 5px;
+
+}
+
+
+/* 폰트 사이즈 */
+
+/* 24px */
+
+.font-24px{
+
+    font-size: 24px;
+
+}
+
+
+
+
+/* 색깔 관련 ===================== */
+/* 배경 fed123 */
+
+.back-fed123{
+
+    background-color: #fed123;
+
+}
+
+
+/* 배경 하얀색 */
+.back-white{
+
+    background-color: #fff;
+
+}
+
+
+
+/* 모양 관련 ======================= */
+
+.border-radius-30px{
+
+    border-radius: 30px;
+
+}
