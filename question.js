@@ -69,22 +69,35 @@ const question = () => {
     questionIE.forEach((element) => {
       // li 생성
       const mbtiLi = document.createElement("li");
+
+      // li에 넣을 checkbox 지정
+      const mbtiCheckbox = document.createElement("input")
+
+      // 체크 박스의 설정 지정
+      // checkbox는 type checkbox로 지정
+      mbtiCheckbox.type = "checkbox" 
+
       // li에 값을 넣음
       mbtiLi.innerText = element;
+
+      
+      
       // mbtiQuestionUl(ul)에 mbtiLi(li)를 넣기
       mbtiQuestionUl.append(mbtiLi);
+      // li에는 checkbox도 넣음
+      mbtiLi.append(mbtiCheckbox)
     });
 
     // poke-mbti에
     // mbtiQuestionSection을 넣기
     pokeMBTI.insertAdjacentElement("afterbegin", mbtiQuestionSection);
-
-    // mbti question에 질문들 넣기
-    mbtiQuestionSection.append(mbtiQuestionUl);
-
+    
     // form 지정
     const mbtiQuestionForm = document.createElement("form")
 
+    // mbti question form에 질문들 넣기
+    mbtiQuestionForm.append(mbtiQuestionUl);
+    
     // form을 section에 넣음
     mbtiQuestionSection.append(mbtiQuestionForm)
 
