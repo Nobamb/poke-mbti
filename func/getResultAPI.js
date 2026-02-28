@@ -25,9 +25,9 @@ const getResultAPI = (mbtiValue) => {
   const pokeResult = document.createElement("form");
   pokeResult.id = "poke-result";
 
-  // body에 붙여넣음
+  // inner에 붙여넣음
   document
-    .querySelector("body")
+    .getElementById("inner")
     .insertAdjacentElement("afterbegin", pokeResult);
 
   //   // 버튼 요소를 받음
